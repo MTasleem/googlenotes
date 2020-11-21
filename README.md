@@ -2,8 +2,7 @@
 
 ## Development server 
 
-# Goto googlenotes folder 
-
+Goto googlenotes folder 
 Run `npm install` for the dev dependencies.
 
 # After that in the googlenotes folder 
