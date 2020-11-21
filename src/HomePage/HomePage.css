@@ -1,0 +1,116 @@
+section.gnotes-section {
+    padding         : 15px 20px;
+    font-size       : 20px;
+    background-color: #ccc;
+    box-shadow      : 0px 1px 1px 1px #b0b0b0;
+    display         : flex;
+    justify-content : space-between;
+}
+
+section.gnotes-section span:last-child {
+    cursor: pointer;
+}
+
+.gnotes-body>section:first-child {
+    width: 30%;
+    float: left;
+}
+
+.no-data {
+    padding   : 20px;
+    font-size : 20px;
+    text-align: center;
+}
+
+.gnotes-body>section {
+    width  : 70%;
+    display: inline-block;
+}
+
+section.left-side {
+    height      : calc(100vh - 60px) !important;
+    border-right: 1px solid #ccc;
+    border-left : 1px solid #ccc;
+}
+
+.pos-relative {
+    position: relative;
+}
+
+.pos-absolute {
+    position: absolute;
+}
+
+.message-body {
+    border-bottom: 1px solid #ccc;
+    padding      : 10px 20px;
+    max-height   : 150px;
+    overflow-y   : auto;
+}
+
+.wrap-content span {
+    right     : 0;
+    top       : 0;
+    padding   : 3px 10px;
+    font-size : 20px;
+    cursor    : pointer;
+    transition: all 0.2s;
+}
+
+.wrap-content span:hover {
+    transform: scale(1.5);
+}
+
+section.add-notes {
+    display        : flex;
+    justify-content: flex-end;
+    padding        : 20px 0;
+}
+
+.errorMsg {
+    color      : red;
+    font-size  : 12px;
+    padding-top: 5px;
+}
+
+section.add-body {
+    display: block;
+    padding: 0 0 0 20px;
+    float  : right;
+    width  : 100%;
+}
+
+section.save-btn {
+    float: right;
+}
+
+::-webkit-scrollbar {
+    width     : 4px;
+    border    : 1px solid #d5d5d5;
+    background: -webkit-linear-gradient(0, blue 50%, white 100%);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 0;
+    background   : #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background   : #b0b0b0;
+}
+
+@media all and (max-width: 500px) and (min-width: 320px) {
+    .no-data {
+        padding  : 20px 0;
+        font-size: 10px;
+    }
+
+    .gnotes-body>section {
+        padding-right: 10px;
+    }
+
+    .remove-padding {
+        padding: 0;
+    }
+}
