@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { render } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import "../HomePage/HomePage.css"
-import { deleteNotes } from "../_actions";
+import { deleteNotes, updateNotes } from "../_actions";
 
 export default function LeftPanel() {
   // const [deleteNotes, setDeleteNotes] = useState(0)
@@ -15,6 +15,10 @@ export default function LeftPanel() {
     dispatch(deleteNotes(index))
   }
 
+  const editData = (item, index) => {
+    dispatch(updateNotes({ item, index }))
+  }
+
   return (
     <section className="left-side">
       {
@@ -22,7 +26,7 @@ export default function LeftPanel() {
           notes.map((item, index) => {
             return (
               <section className="wrap-content pos-relative" key={index}>
-                <div className="message-body pos-relative" key={index}>
+                <div className="message-body pos-relative" key={index} onClick={(e) => editData(item, index)}>
                   <div className="title"><strong>{item?.title}</strong></div>
                   <div className="body">{item?.body}</div>
                 </div>

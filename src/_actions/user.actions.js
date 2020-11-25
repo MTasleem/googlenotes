@@ -9,9 +9,17 @@ export function addNotes(notes) {
         payload: notes
     };
 }
+
 export function deleteNotes(notes) {
     return {
         type: userConstants.DELETE_NOTES,
+        payload: notes
+    };
+}
+
+export function updateNotes(notes) {
+    return {
+        type: userConstants.UPDATE_NOTES,
         payload: notes
     };
 }

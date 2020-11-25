@@ -19,4 +19,5 @@ export const userConstants = {
 
     ADD_NOTES: 'ADD_NOTES',
     DELETE_NOTES: 'DELETE_NOTES',
+    UPDATE_NOTES: "UPDATE_NOTES"
 };

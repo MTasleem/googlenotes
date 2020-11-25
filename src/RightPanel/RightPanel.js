@@ -1,25 +1,39 @@
-import React, { useState, useRef } from 'react'
-import { useDispatch } from 'react-redux';
+import React, { useState, useRef, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import "../HomePage/HomePage.css"
 import { addNotes } from "../_actions";
 
 
 export default function RightPanel() {
+  const state = useSelector(state => state.users['updateNotes'])
+  // const state = useSelector(state => state.users)
   const dispatch = useDispatch();
-  const [notes, setNotes] = useState({ "title": "", "body": "" });
+  const [notes, setNotes] = useState({ "title": "", "body": "", "index": "" });
   const [title, setTitle] = useState(false)
   const [body, setBody] = useState(false)
   const titleRef = useRef();
   const bodyRef = useRef();
 
+  useEffect(() => {
+    if (state) {
+      setNotes({ "title": state.item.title, "body": state.item.body })
+    }
+  }, [state])
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (notes['title'] && notes['body']) {
-      dispatch(addNotes(notes))
-    } else {
-      setTitle(true)
-      setBody(true)
-    }
+    if (state) {
+      let item = { "index": state.index, item: notes }
+      dispatch(addNotes(item))
+    } else
+      if (notes['title'] && notes['body']) {
+        let item = { "index": -1, item: notes }
+        dispatch(addNotes(item))
+      }
+      else {
+        setTitle(true)
+        setBody(true)
+      }
   }
 
   const handleTitle = (e) => {
@@ -53,7 +67,7 @@ export default function RightPanel() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="titleLabel">Title:</label>
-            <input type="text" className="form-control" ref={titleRef} name="title" id="titleLabel" onChange={(e) => { setNotes({ ...notes, title: e.target.value }); handleTitle(e) }} />
+            <input type="text" className="form-control" value={notes['title']} ref={titleRef} name="title" id="titleLabel" onChange={(e) => { setNotes({ ...notes, title: e.target.value }); handleTitle(e) }} />
             <div className="errorMsg">
               {
                 title ? 'Enter Title' : null
@@ -62,7 +76,7 @@ export default function RightPanel() {
           </div>
           <div className="form-group">
             <label htmlFor="bodyLabel">Body:</label>
-            <textarea className="form-control" id="bodyLabel" ref={bodyRef} name="body" rows="10" onChange={(e) => { setNotes({ ...notes, body: e.target.value }); handleBody(e) }}></textarea>
+            <textarea className="form-control" id="bodyLabel" value={notes['body']} ref={bodyRef} name="body" rows="10" onChange={(e) => { setNotes({ ...notes, body: e.target.value }); handleBody(e) }}></textarea>
             <div className="errorMsg">
               {
                 body ? 'Enter Body' : null
